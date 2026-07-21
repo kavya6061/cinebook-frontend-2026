@@ -53,7 +53,16 @@ function SeatLayout() {
       .catch((err) => setMessage(err.response?.data?.message || 'Seats lock nahi ho payi'));
   };
 
-  if (!booking.show) return <div className="page-container">Please select a theatre and showtime first.</div>;
+  if (!booking.show) {
+  return (
+    <div className="page-container error-state">
+      <div className="error-icon">⚠️</div>
+      <h3>Data is missing</h3>
+      <p className="movie-meta">Please select a movie and showtime before choosing seats.</p>
+      <button className="action-btn" onClick={() => navigate('/')}>Go to Home Page</button>
+    </div>
+  );
+}
 
   return (
     <div className="page-container">
