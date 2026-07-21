@@ -291,3 +291,152 @@ body.light-theme .theme-toggle-btn { background: rgba(0,0,0,0.06); border-color:
   border-radius: 10px; font-weight: 700; z-index: 999;
   animation: fadeIn 0.3s ease;
 }
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .page-container {
+    padding: 20px 16px 40px;
+  }
+
+  .hero-banner h1 {
+    font-size: 24px;
+  }
+  .hero-banner p {
+    font-size: 13px;
+  }
+
+  .top-bar {
+    flex-direction: column;
+  }
+  .city-select, .search-bar {
+    width: 100%;
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .trending-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .movie-detail-header {
+    flex-direction: column;
+  }
+  .poster-placeholder.large {
+    width: 100%;
+    padding: 40px;
+  }
+
+  .seat-grid {
+    grid-template-columns: repeat(6, 42px);
+    gap: 8px;
+  }
+  .seat {
+    width: 42px;
+    height: 36px;
+    font-size: 10px;
+  }
+
+  .date-picker {
+    justify-content: flex-start;
+  }
+  .genre-tabs, .filter-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .auth-page {
+    flex-direction: column;
+  }
+  .auth-visual {
+    padding: 30px 20px;
+    min-height: 200px;
+  }
+  .auth-visual-content h1 {
+    font-size: 26px;
+  }
+  .auth-features {
+    display: none;
+  }
+  .auth-form-side {
+    padding: 20px;
+  }
+
+  .checkout-summary, .price-breakup {
+    padding: 16px;
+  }
+
+  .payment-options {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+  }
+
+  .wheel-container {
+    width: 220px;
+    height: 220px;
+  }
+  .wheel {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 400px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .seat-grid {
+    grid-template-columns: repeat(6, 36px);
+    gap: 6px;
+  }
+  .seat {
+    width: 36px;
+    height: 32px;
+    font-size: 9px;
+  }
+}
+.navbar-top { display: flex; justify-content: space-between; align-items: center; }
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; align-items: stretch; padding: 14px 20px; }
+  .menu-toggle { display: block; }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a, .nav-links button { width: 100%; text-align: left; }
+  .theme-toggle-btn, .nav-btn { border-radius: 10px; padding: 10px 14px; }
+}
+
+/* MOVIE DETAIL PAGE - MOBILE */
+@media (max-width: 768px) {
+  .movie-detail-header { gap: 16px; }
+  .movie-detail-info h2 { font-size: 22px; }
+  .rating-box { font-size: 12px; padding: 6px 12px; }
+  .synopsis-section, .trailer-section, .reviews-section { padding: 18px; }
+  .trailer-embed iframe { height: 220px; }
+  .cast-list { gap: 8px; }
+  .cast-chip { font-size: 12px; padding: 6px 14px; }
+  .review-card p { font-size: 14px; }
+  .reviews-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
