@@ -440,3 +440,12 @@ body.light-theme .theme-toggle-btn { background: rgba(0,0,0,0.06); border-color:
   .review-card p { font-size: 14px; }
   .reviews-header { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
+.date-picker, .filter-row, .genre-tabs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.date-picker::-webkit-scrollbar,
+.filter-row::-webkit-scrollbar,
+.genre-tabs::-webkit-scrollbar {
+  display: none;
+}

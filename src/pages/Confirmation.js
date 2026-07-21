@@ -8,15 +8,32 @@ function Confirmation() {
 
   if (!booking.confirmedBooking) return <div className="page-container">No booking has been confirmed yet.</div>;
 
+  const bookingId = booking.confirmedBooking.id;
+  const seatLabels = booking.seatDetails?.map((s) => `${s.seat.seatRow}${s.seat.seatNumber}`).join(', ');
+
+  const handleShare = async () => {
+    const shareText = `🎬 My CineBook Ticket\nMovie: ${booking.movie?.title}\nSeats: ${seatLabels}\nShow: ${new Date(booking.show.showTime).toLocaleString()}\nBooking ID: #${bookingId}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Movie Ticket',
+          text: shareText,
+        });
+      } catch (err) {
+        // user cancelled share, ignore
+      }
+    } else {
+      navigator.clipboard.writeText(shareText);
+      alert('Ticket details copied to clipboard! You can paste it anywhere to share.');
+    }
+  };
+
   const handleDone = () => {
     resetBooking();
     navigate('/');
   };
 
-  const bookingId = booking.confirmedBooking.id;
-  const seatLabels = booking.seatDetails?.map((s) => `${s.seat.seatRow}${s.seat.seatNumber}`).join(', ');
-
-  // Data encoded in the QR — a real scanner at the theatre could read this
   const qrData = encodeURIComponent(
     `CineBook Ticket | Booking ID: ${bookingId} | Movie: ${booking.movie?.title} | Seats: ${seatLabels} | Show: ${new Date(booking.show.showTime).toLocaleString()}`
   );
@@ -30,7 +47,7 @@ function Confirmation() {
 
       <div className="qr-placeholder">
         <img src={qrImageUrl} alt="Booking QR Code" className="qr-image" />
-        <p className="movie-meta">Scan this at the theatre entrance to get </p>
+        <p className="movie-meta">Scan this at the theatre entrance to get in</p>
       </div>
 
       <div className="summary-card">
@@ -40,7 +57,7 @@ function Confirmation() {
         <h3>₹{booking.finalAmount}</h3>
       </div>
 
-      <button className="action-btn secondary full-width">📤 Share Ticket</button>
+      <button className="action-btn secondary full-width" onClick={handleShare}>📤 Share Ticket</button>
       <button className="action-btn full-width" onClick={handleDone}>Back to Home</button>
     </div>
   );
